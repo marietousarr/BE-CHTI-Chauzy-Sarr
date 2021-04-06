@@ -1,0 +1,8 @@
+
+
+*.lst
+*.scvd
+*.sarr
+RTE
+Obj
+DebugConfig
