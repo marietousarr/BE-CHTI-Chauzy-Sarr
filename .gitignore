@@ -3,6 +3,6 @@
 *.lst
 *.scvd
 *.sarr
-RTE
-Obj
-DebugConfig
+RTE/
+Obj/
+DebugConfig/
