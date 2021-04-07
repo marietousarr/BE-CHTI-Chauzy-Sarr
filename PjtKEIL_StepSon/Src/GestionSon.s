@@ -1,6 +1,8 @@
 	PRESERVE8
 	THUMB   
-	EXPORT SortieSon	
+	EXPORT SortieSon
+	EXPORT CallbackSon
+	IMPORT Son
 
 ; ====================== zone de réservation de données,  ======================================
 ;Section RAM (read only) :
@@ -11,7 +13,8 @@
 	area    maram,data,readwrite
 		
 SortieSon dcd 0
-	
+Index dcd 0
+
 	
 
 	
@@ -24,7 +27,40 @@ SortieSon dcd 0
 	area    moncode,code,readonly
 ; écrire le code ici		
 
+CallbackSon proc
+	
+	ldr r1, =Son
+	ldr r2, =Index ; on charge l'adresse du tableau
+	
 
+	mov r0, #5512; 4 * 5512 index final
+	
+	ldr r3,[r2] ; r3 est l'index courant
+	cmp r3, r0
+	ble calcul
+	bx lr
+	
+calcul
+	
+	ldrsh	r0, [r1,r3,LSL #1]
+	
+	add r3,#1
+	str r3, [r2]; on sauvegarde l'index
+	
+	;calcul
+	add r0, #32768
+	mov r3, #720
+	mul r0, r3
+	lsr r0,#16
+	
+	ldr r1,=SortieSon
+	str r0, [r1]; on copie le resultat dans SortieSon
+	
+	bx lr
+	
+	
+	
+	endp
 
 
 
