@@ -19,6 +19,8 @@ CLOCK_Configure();
 Timer_1234_Init_ff( TIM4, 6552);
 Active_IT_Debordement_Timer( TIM4, 2, CallbackSon );
 
+PWM_Init_ff( TIM3, 3, 720);	
+GPIO_Configure(GPIOB, 0, OUTPUT, ALT_PPULL);
 
 	
 	

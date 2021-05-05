@@ -1,8 +1,10 @@
 	PRESERVE8
-	THUMB   
+	THUMB  
+	include DriverJeuLaser.inc
 	EXPORT SortieSon
 	EXPORT CallbackSon
 	IMPORT Son
+	
 
 ; ====================== zone de réservation de données,  ======================================
 ;Section RAM (read only) :
@@ -56,14 +58,8 @@ calcul
 	ldr r1,=SortieSon
 	str r0, [r1]; on copie le resultat dans SortieSon
 	
-	bx lr
-	
-	
-	
+	b PWM_Set_Value_TIM3_Ch3
+
 	endp
 
-
-
-		
-		
 	END	
