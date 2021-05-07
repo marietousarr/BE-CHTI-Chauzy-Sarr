@@ -3,8 +3,12 @@
 	include DriverJeuLaser.inc
 	EXPORT SortieSon
 	EXPORT CallbackSon
+	EXPORT Index
 	IMPORT Son
-	
+	IMPORT LongueurSon
+		
+
+
 
 ; ====================== zone de réservation de données,  ======================================
 ;Section RAM (read only) :
@@ -35,7 +39,8 @@ CallbackSon proc
 	ldr r2, =Index ; on charge l'adresse du tableau
 	
 
-	mov r0, #5512; 4 * 5512 index final
+	ldr r0, =LongueurSon; 4 * 5512 index final
+	ldr r0, [r0]
 	
 	ldr r3,[r2] ; r3 est l'index courant
 	cmp r3, r0
@@ -61,5 +66,6 @@ calcul
 	b PWM_Set_Value_TIM3_Ch3
 
 	endp
+		
 
 	END	
